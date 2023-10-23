@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "../form/form";
 import "./createEmployee.css";
+import { useDispatch } from "react-redux";
+import { addEmployee } from "../../store/employeeSlice";
 
 function CreateEmployee() {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     document.title = "HRnet - Create Employee";
   }, []);
@@ -20,14 +24,15 @@ function CreateEmployee() {
     zipCode: "",
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEmployee({ ...employee, [name]: value });
+  const handleInputChange = (e, fieldName) => {
+    const { value } = e.target;
+    setEmployee({ ...employee, [fieldName]: value });
   };
 
   const saveEmployee = () => {
     // logique de sauvegarde...
     console.log("saveEmployee called");
+    dispatch(addEmployee(employee));
   };
 
   return (
