@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { selectAllEmployees } from "../../store/employeeSlice";
 import { useSelector } from "react-redux";
-import TableComponent from "./tableComponent";
+import TableComponent from "../tableComponent/tableComponent";
 
 function EmployeeList() {
   const employees = useSelector(selectAllEmployees);

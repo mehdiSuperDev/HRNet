@@ -1,4 +1,5 @@
 import React from "react";
+import "./tableComponent.css";
 
 import {
   createColumnHelper,
@@ -135,30 +136,39 @@ const columnHelper = createColumnHelper();
 
 const columns = [
   columnHelper.accessor("firstName", {
+    header: () => "First Name",
     cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("lastName", {
-    cell: (info) => info.renderValue(),
-  }),
-  columnHelper.accessor("dateOfBirth", {
+    header: () => "Last Name",
     cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("startDate", {
+    header: () => "Start Date",
     cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("department", {
+    header: () => "Department",
+    cell: (info) => info.renderValue(),
+  }),
+  columnHelper.accessor("dateOfBirth", {
+    header: () => "Date Of Birth",
     cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("street", {
+    header: () => "Street",
     cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("city", {
+    header: () => "City",
     cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("state", {
+    header: () => "State",
     cell: (info) => info.renderValue(),
   }),
   columnHelper.accessor("zipCode", {
+    header: () => "Zip Code",
     cell: (info) => info.renderValue(),
   }),
 ];
@@ -170,6 +180,7 @@ function TableComponent() {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    debugTable: true,
   });
 
   return (
