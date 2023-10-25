@@ -6,6 +6,7 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getPaginationRowModel,
 } from "@tanstack/react-table";
 
 const defaultData = [
@@ -41,6 +42,182 @@ const defaultData = [
     city: "",
     state: "AL",
     zipCode: "",
+  },
+  {
+    firstName: "Sophie",
+    lastName: "Martin",
+    dateOfBirth: "05/06/1987",
+    startDate: "12/01/2023",
+    department: "HR",
+    street: "2 avenue de la République",
+    city: "lyon",
+    state: "AL",
+    zipCode: "69001",
+  },
+  {
+    firstName: "Lucas",
+    lastName: "Bernard",
+    dateOfBirth: "03/15/1991",
+    startDate: "03/18/2023",
+    department: "Finance",
+    street: "28 rue du Pont",
+    city: "marseille",
+    state: "AL",
+    zipCode: "13003",
+  },
+  {
+    firstName: "Emma",
+    lastName: "Dubois",
+    dateOfBirth: "11/23/1995",
+    startDate: "06/09/2023",
+    department: "Sales",
+    street: "47 boulevard de Grenelle",
+    city: "nice",
+    state: "AL",
+    zipCode: "06000",
+  },
+  {
+    firstName: "Olivier",
+    lastName: "Girard",
+    dateOfBirth: "08/14/1984",
+    startDate: "07/03/2023",
+    department: "IT",
+    street: "140 rue de la Gare",
+    city: "nantes",
+    state: "AL",
+    zipCode: "44000",
+  },
+  {
+    firstName: "Marie",
+    lastName: "Lefevre",
+    dateOfBirth: "09/05/1989",
+    startDate: "02/14/2023",
+    department: "Operations",
+    street: "32 rue de l'Église",
+    city: "strasbourg",
+    state: "AL",
+    zipCode: "67000",
+  },
+  {
+    firstName: "Julien",
+    lastName: "Roux",
+    dateOfBirth: "01/19/1992",
+    startDate: "04/22/2023",
+    department: "Marketing",
+    street: "89 avenue du Président Kennedy",
+    city: "montpellier",
+    state: "AL",
+    zipCode: "34000",
+  },
+  {
+    firstName: "Caroline",
+    lastName: "Moreau",
+    dateOfBirth: "04/07/1990",
+    startDate: "05/29/2023",
+    department: "HR",
+    street: "67 rue des Poissonniers",
+    city: "bordeaux",
+    state: "AL",
+    zipCode: "33000",
+  },
+  {
+    firstName: "Thomas",
+    lastName: "Lambert",
+    dateOfBirth: "07/02/1988",
+    startDate: "08/30/2023",
+    department: "Finance",
+    street: "25 rue de la Paix",
+    city: "lille",
+    state: "AL",
+    zipCode: "59000",
+  },
+  {
+    firstName: "Sophie",
+    lastName: "Martin",
+    dateOfBirth: "05/06/1987",
+    startDate: "12/01/2023",
+    department: "HR",
+    street: "2 avenue de la République",
+    city: "lyon",
+    state: "AL",
+    zipCode: "69001",
+  },
+  {
+    firstName: "Lucas",
+    lastName: "Bernard",
+    dateOfBirth: "03/15/1991",
+    startDate: "03/18/2023",
+    department: "Finance",
+    street: "28 rue du Pont",
+    city: "marseille",
+    state: "AL",
+    zipCode: "13003",
+  },
+  {
+    firstName: "Emma",
+    lastName: "Dubois",
+    dateOfBirth: "11/23/1995",
+    startDate: "06/09/2023",
+    department: "Sales",
+    street: "47 boulevard de Grenelle",
+    city: "nice",
+    state: "AL",
+    zipCode: "06000",
+  },
+  {
+    firstName: "Olivier",
+    lastName: "Girard",
+    dateOfBirth: "08/14/1984",
+    startDate: "07/03/2023",
+    department: "IT",
+    street: "140 rue de la Gare",
+    city: "nantes",
+    state: "AL",
+    zipCode: "44000",
+  },
+  {
+    firstName: "Marie",
+    lastName: "Lefevre",
+    dateOfBirth: "09/05/1989",
+    startDate: "02/14/2023",
+    department: "Operations",
+    street: "32 rue de l'Église",
+    city: "strasbourg",
+    state: "AL",
+    zipCode: "67000",
+  },
+  {
+    firstName: "Julien",
+    lastName: "Roux",
+    dateOfBirth: "01/19/1992",
+    startDate: "04/22/2023",
+    department: "Marketing",
+    street: "89 avenue du Président Kennedy",
+    city: "montpellier",
+    state: "AL",
+    zipCode: "34000",
+  },
+  {
+    firstName: "Caroline",
+    lastName: "Moreau",
+    dateOfBirth: "04/07/1990",
+    startDate: "05/29/2023",
+    department: "HR",
+    street: "67 rue des Poissonniers",
+    city: "bordeaux",
+    state: "AL",
+    zipCode: "33000",
+  },
+  {
+    firstName: "Thomas",
+    lastName: "Lambert",
+    dateOfBirth: "07/02/1988",
+    startDate: "08/30/2023",
+    department: "Finance",
+    street: "25 rue de la Paix",
+    city: "lille",
+    state: "AL",
+    zipCode: "59000",
   },
   {
     firstName: "Sophie",
@@ -179,7 +356,14 @@ function TableComponent() {
   const table = useReactTable({
     data,
     columns,
+    initialState: {
+      pagination: {
+        pageIndex: 0,
+        pageSize: 10,
+      },
+    },
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     debugTable: true,
   });
 
@@ -212,6 +396,37 @@ function TableComponent() {
           ))}
         </tbody>
       </table>
+      <div className="pagination">
+        <span>
+          {table.getState().pagination.pageIndex *
+            table.getState().pagination.pageSize +
+            1}{" "}
+          to{" "}
+          {Math.min(
+            (table.getState().pagination.pageIndex + 1) *
+              table.getState().pagination.pageSize,
+            data.length
+          )}{" "}
+          of {data.length} entries
+        </span>
+        <button
+          onClick={() => table.previousPage()}
+          disabled={table.getCanPreviousPage() === false}
+        >
+          Previous
+        </button>
+        {table.getPageOptions().map((pageNumber, index) => (
+          <button key={index} onClick={() => table.setPageIndex(index)}>
+            {pageNumber + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => table.nextPage()}
+          disabled={table.getCanNextPage() === false}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
