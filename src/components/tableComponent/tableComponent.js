@@ -420,11 +420,10 @@ function TableComponent() {
               1}{" "}
             to{" "}
             {Math.min(
-              (table.getState().pagination.pageIndex + 1) *
-                table.getState().pagination.pageSize,
-              data.length
+              table.getPageCount() * table.getState().pagination.pageSize,
+              table.getFilteredRowModel().rows.length
             )}{" "}
-            of {data.length} entries
+            of {table.getFilteredRowModel().rows.length} entries
           </span>
           <button
             onClick={() => table.previousPage()}
