@@ -1,4 +1,4 @@
-table {
+/* table {
     border: 1px solid lightgray;
   }
   
@@ -18,7 +18,7 @@ table {
   
   tfoot th {
     font-weight: normal;
-  }
+  } */
 
   .pagination {
     display: flex;
@@ -38,3 +38,79 @@ table {
     color: #aaa;
     cursor: not-allowed;
   }
+
+/* Test */
+
+table {
+  border-collapse: separate;
+  text-indent: initial;
+  white-space-collapse: collapse;
+  text-wrap: wrap;
+  line-height: normal;
+  font-weight: normal;
+  font-size: medium;
+  font-style: normal;
+  color: -internal-quirk-inherit;
+  text-align: start;
+  border-spacing: 2px;
+  font-variant: normal;
+}
+
+table.dataTable {
+  width: 100%;
+  margin: 0 auto;
+  clear: both;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+table.dataTable.row-border tbody tr:first-child th, table.dataTable.row-border tbody tr:first-child td, table.dataTable.display tbody tr:first-child th, table.dataTable.display tbody tr:first-child td {
+    border-top: none;
+}
+table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+    border-top: 1px solid #ddd;
+}
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 8px 10px;
+}
+table.dataTable, table.dataTable th, table.dataTable td {
+    box-sizing: content-box;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: black;
+}
+
+tbody td {
+  border-top: 1px solid #ddd;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+
+
+tr.odd {
+  background-color: #f9f9f9;
+}
+
+tr.even {
+  background-color: white;
+}
+
+tr {
+  transition: filter 0.3s; 
+}
+
+tr:hover {
+  filter: brightness(90%); /* Diminue la luminosité de 10% */
+}
+
+.sorting {
+  background-repeat: no-repeat;
+  background-image: url("https://cdn.datatables.net/1.10.21/images/sort_both.png");
+}

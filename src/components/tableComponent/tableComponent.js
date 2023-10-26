@@ -437,8 +437,8 @@ function TableComponent() {
             ))}
           </thead>
           <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <tr key={row.id}>
+            {table.getRowModel().rows.map((row, index) => (
+              <tr key={row.id} className={index % 2 === 0 ? "even" : "odd"}>
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
