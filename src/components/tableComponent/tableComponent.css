@@ -114,3 +114,11 @@ tr:hover {
   background-repeat: no-repeat;
   background-image: url("https://cdn.datatables.net/1.10.21/images/sort_both.png");
 }
+
+.preTable {
+  display: flex;
+  justify-content: space-between;
+  width: 900px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

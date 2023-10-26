@@ -384,7 +384,7 @@ function TableComponent() {
 
   return (
     <>
-      <div>
+      <div className="preTable">
         <select
           value={table.getState().pagination.pageSize}
           onChange={(e) => {
@@ -400,7 +400,7 @@ function TableComponent() {
         <DebouncedInput
           value={globalFilter ?? ""}
           onChange={(value) => setGlobalFilter(value)}
-          placeholder="Search all columns..."
+          placeholder=""
         />
       </div>
       <div>

@@ -23,11 +23,14 @@ function DebouncedInput(props) {
   }, [value, onChange, debounce]);
 
   return (
-    <input
-      {...otherProps}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-    />
+    <div>
+      {"Search:   "}
+      <input
+        {...otherProps}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    </div>
   );
 }
 
