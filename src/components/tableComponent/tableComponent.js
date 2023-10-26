@@ -7,7 +7,10 @@ import {
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
+  getFilteredRowModel,
 } from "@tanstack/react-table";
+
+import DebouncedInput from "../deboucedInput/debouncedInput";
 
 const defaultData = [
   {
@@ -352,6 +355,7 @@ const columns = [
 
 function TableComponent() {
   const [data] = React.useState(() => [...defaultData]);
+  const [globalFilter, setGlobalFilter] = React.useState("");
 
   const table = useReactTable({
     data,
@@ -362,72 +366,86 @@ function TableComponent() {
         pageSize: 10,
       },
     },
+    state: {
+      globalFilter: globalFilter,
+    },
+    // onGlobalFilterChange: setGlobalFilter,
+    getFilteredRowModel: getFilteredRowModel(),
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     debugTable: true,
   });
 
   return (
-    <div>
-      <table>
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="pagination">
-        <span>
-          {table.getState().pagination.pageIndex *
-            table.getState().pagination.pageSize +
-            1}{" "}
-          to{" "}
-          {Math.min(
-            (table.getState().pagination.pageIndex + 1) *
-              table.getState().pagination.pageSize,
-            data.length
-          )}{" "}
-          of {data.length} entries
-        </span>
-        <button
-          onClick={() => table.previousPage()}
-          disabled={table.getCanPreviousPage() === false}
-        >
-          Previous
-        </button>
-        {table.getPageOptions().map((pageNumber, index) => (
-          <button key={index} onClick={() => table.setPageIndex(index)}>
-            {pageNumber + 1}
-          </button>
-        ))}
-        <button
-          onClick={() => table.nextPage()}
-          disabled={table.getCanNextPage() === false}
-        >
-          Next
-        </button>
+    <>
+      <div>
+        <DebouncedInput
+          value={globalFilter ?? ""}
+          onChange={(value) => setGlobalFilter(value)}
+          placeholder="Search all columns..."
+        />
       </div>
-    </div>
+      <div>
+        <table>
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id}>
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="pagination">
+          <span>
+            {table.getState().pagination.pageIndex *
+              table.getState().pagination.pageSize +
+              1}{" "}
+            to{" "}
+            {Math.min(
+              (table.getState().pagination.pageIndex + 1) *
+                table.getState().pagination.pageSize,
+              data.length
+            )}{" "}
+            of {data.length} entries
+          </span>
+          <button
+            onClick={() => table.previousPage()}
+            disabled={table.getCanPreviousPage() === false}
+          >
+            Previous
+          </button>
+          {table.getPageOptions().map((pageNumber, index) => (
+            <button key={index} onClick={() => table.setPageIndex(index)}>
+              {pageNumber + 1}
+            </button>
+          ))}
+          <button
+            onClick={() => table.nextPage()}
+            disabled={table.getCanNextPage() === false}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </>
   );
 }
 
