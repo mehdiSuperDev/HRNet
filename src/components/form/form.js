@@ -1,4 +1,4 @@
-import { DatePicker } from "antd";
+import { DatePicker, Select } from "antd";
 import dayjs from "dayjs";
 import "./form.css";
 
@@ -312,18 +312,23 @@ function Form(props) {
             />
 
             <label htmlFor="state">State</label>
-            <select
-              name="state"
+            <Select
+              style={{ width: "100%" }}
               id="state"
-              onChange={(e) => props.handleInputChange(e, "state")}
-              value={props.employee.state || ""}
+              onChange={(value) =>
+                props.handleInputChange({ target: { value } }, "state")
+              }
+              value={props.employee.state || states[0].abbreviation}
             >
               {states.map((state) => (
-                <option key={state.abbreviation} value={state.abbreviation}>
+                <Select.Option
+                  key={state.abbreviation}
+                  value={state.abbreviation}
+                >
                   {state.name}
-                </option>
+                </Select.Option>
               ))}
-            </select>
+            </Select>
 
             <label htmlFor="zip-code">Zip Code</label>
             <input
@@ -335,18 +340,22 @@ function Form(props) {
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <select
-            name="department"
+          <Select
+            style={{ width: "100%" }}
             id="department"
-            onChange={(e) => props.handleInputChange(e, "department")}
-            value={props.employee.department || ""}
+            onChange={(value) =>
+              props.handleInputChange({ target: { value } }, "department")
+            }
+            value={props.employee.department || "Sales"}
           >
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+            <Select.Option value="Sales">Sales</Select.Option>
+            <Select.Option value="Marketing">Marketing</Select.Option>
+            <Select.Option value="Engineering">Engineering</Select.Option>
+            <Select.Option value="Human Resources">
+              Human Resources
+            </Select.Option>
+            <Select.Option value="Legal">Legal</Select.Option>
+          </Select>
         </form>
       </div>
     </div>

@@ -13,6 +13,16 @@
   
 
 .employee-button {
+  border: 1px solid lightgray;
+  border-radius: 5px;
   margin-top: 20px;
   margin-bottom: 20px;
+  box-sizing: border-box;
+  height: 32px;
+  padding: 4px 11px ;
+}
+
+button:hover {
+  background-color: lightgrey;
+  border-color: black;
 }
