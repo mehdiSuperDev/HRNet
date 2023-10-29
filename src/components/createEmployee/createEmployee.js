@@ -44,7 +44,9 @@ function CreateEmployee() {
         <Link to="/employee-list">View Current Employees</Link>
         <h2>Create Employee</h2>
         <Form employee={employee} handleInputChange={handleInputChange} />
-        <button onClick={saveEmployee}>Save</button>
+        <button className="employee-button" onClick={saveEmployee}>
+          Save
+        </button>
       </div>
     </>
   );

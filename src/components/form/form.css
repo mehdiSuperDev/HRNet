@@ -1,0 +1,10 @@
+.custom-form input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 4px 11px ;
+}
+
+.custom-form input:hover {
+    background-color: #5D64FB7A;
+    border-color: #212AFBFF;
+}
