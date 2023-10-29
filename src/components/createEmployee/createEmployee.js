@@ -4,9 +4,12 @@ import Form from "../form/form";
 import "./createEmployee.css";
 import { useDispatch } from "react-redux";
 import { addEmployee } from "../../store/employeeSlice";
+import { Modal, Button } from "antd";
 
 function CreateEmployee() {
   const dispatch = useDispatch();
+
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     document.title = "HRnet - Create Employee";
@@ -33,6 +36,7 @@ function CreateEmployee() {
     // logique de sauvegarde...
     console.log("saveEmployee called");
     dispatch(addEmployee(employee));
+    setIsVisible(true);
   };
 
   return (
@@ -47,6 +51,18 @@ function CreateEmployee() {
         <button className="employee-button" onClick={saveEmployee}>
           Save
         </button>
+
+        <Modal
+          title="Employee Created!"
+          open={isVisible}
+          onOk={() => setIsVisible(false)}
+          onCancel={() => setIsVisible(false)}
+          footer={[
+            <Button key="ok" type="primary" onClick={() => setIsVisible(false)}>
+              Ok
+            </Button>,
+          ]}
+        />
       </div>
     </>
   );
