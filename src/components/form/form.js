@@ -1,6 +1,7 @@
 import { DatePicker, Select } from "antd";
 import dayjs from "dayjs";
 import "./form.css";
+import { Selectoc } from "selectoc";
 
 const states = [
   {
@@ -312,23 +313,16 @@ function Form(props) {
             />
 
             <label htmlFor="state">State</label>
-            <Select
-              style={{ width: "100%" }}
-              id="state"
+            <Selectoc
+              options={states.map((state) => ({
+                value: state.abbreviation,
+                label: state.name,
+              }))}
               onChange={(value) =>
                 props.handleInputChange({ target: { value } }, "state")
               }
-              value={props.employee.state || states[0].abbreviation}
-            >
-              {states.map((state) => (
-                <Select.Option
-                  key={state.abbreviation}
-                  value={state.abbreviation}
-                >
-                  {state.name}
-                </Select.Option>
-              ))}
-            </Select>
+              defaultValue={props.employee.state || states[0].abbreviation}
+            />
 
             <label htmlFor="zip-code">Zip Code</label>
             <input
@@ -340,22 +334,20 @@ function Form(props) {
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <Select
-            style={{ width: "100%" }}
+          <Selectoc
             id="department"
             onChange={(value) =>
               props.handleInputChange({ target: { value } }, "department")
             }
-            value={props.employee.department || "Sales"}
-          >
-            <Select.Option value="Sales">Sales</Select.Option>
-            <Select.Option value="Marketing">Marketing</Select.Option>
-            <Select.Option value="Engineering">Engineering</Select.Option>
-            <Select.Option value="Human Resources">
-              Human Resources
-            </Select.Option>
-            <Select.Option value="Legal">Legal</Select.Option>
-          </Select>
+            defaultValue={props.employee.department || "Sales"}
+            options={[
+              { value: "Sales", label: "Sales" },
+              { value: "Marketing", label: "Marketing" },
+              { value: "Engineering", label: "Engineering" },
+              { value: "Human Resources", label: "Human Resources" },
+              { value: "Legal", label: "Legal" },
+            ]}
+          />
         </form>
       </div>
     </div>
