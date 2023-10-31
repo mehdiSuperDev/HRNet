@@ -9,14 +9,13 @@ function EmployeeList() {
 
   useEffect(() => {
     document.title = "HRnet - Current Employees";
-    console.log(employees);
   }, [employees]);
 
   return (
     <div id="employee-div" className="container">
       <h1>Current Employees</h1>
       <Link to="/">Home</Link>
-      <TableComponent />
+      <TableComponent tableData={employees} />
     </div>
   );
 }

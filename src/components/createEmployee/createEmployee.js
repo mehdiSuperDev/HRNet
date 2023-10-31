@@ -33,8 +33,6 @@ function CreateEmployee() {
   };
 
   const saveEmployee = () => {
-    // logique de sauvegarde...
-    console.log("saveEmployee called");
     dispatch(addEmployee(employee));
     setIsVisible(true);
   };
