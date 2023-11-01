@@ -32,6 +32,8 @@ table {
   text-align: start;
   border-spacing: 2px;
   font-variant: normal;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 table.dataTable {
@@ -68,6 +70,7 @@ tbody td {
 td {
   display: table-cell;
   vertical-align: inherit;
+  padding: 10px;
 }
 
 tr.odd {
@@ -105,4 +108,5 @@ tr:hover {
 
 .preTable input {
   border-radius: 5px;
+  border-color: black;
 }
