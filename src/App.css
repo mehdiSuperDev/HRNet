@@ -64,3 +64,19 @@ label {
 .address {
   margin-top: 10px;
 }
+
+input {
+  border: 1px solid #ccc; /* Définir une bordure simple et plate */
+  box-shadow: none;       /* Supprimer les ombres */
+  background-image: none; /* Supprimer les éventuels gradients */
+  outline: none;          /* Supprimer l'outline lors de la mise au point */
+  -webkit-appearance: none;  /* Pour certains éléments de formulaire sur les navigateurs Webkit */
+  -moz-appearance: none;     /* Pour certains éléments de formulaire sur Firefox */
+  appearance: none; 
+  padding: 5px; 
+}
+
+select {
+  border-radius: 5px;
+  padding: 5px 2px;
+}

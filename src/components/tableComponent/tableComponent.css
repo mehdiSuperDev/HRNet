@@ -1,45 +1,23 @@
-/* table {
-    border: 1px solid lightgray;
-  }
-  
-  tbody {
-    border-bottom: 1px solid lightgray;
-  }
-  
-  th {
-    border-bottom: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-    padding: 2px 4px;
-  }
-  
-  tfoot {
-    color: gray;
-  }
-  
-  tfoot th {
-    font-weight: normal;
-  } */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  width: 1072px;
+  align-items: center;
+  margin-top: 20px;
+}
 
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .pagination button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
-  
-  .pagination button:disabled {
-    color: #aaa;
-    cursor: not-allowed;
-  }
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-/* Test */
+.pagination button:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
 
 table {
   border-collapse: separate;
@@ -92,8 +70,6 @@ td {
   vertical-align: inherit;
 }
 
-
-
 tr.odd {
   background-color: #f9f9f9;
 }
@@ -115,10 +91,18 @@ tr:hover {
   background-image: url("https://cdn.datatables.net/1.10.21/images/sort_both.png");
 }
 
+.fixedSizeTable {
+  width: 1072px;
+}
+
 .preTable {
   display: flex;
   justify-content: space-between;
-  width: 900px;
+  width: 1072px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.preTable input {
+  border-radius: 5px;
 }
