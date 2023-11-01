@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "../form/form";
 import "./createEmployee.css";
-import { useDispatch } from "react-redux";
-import { addEmployee } from "../../store/employeeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addEmployee, updateForm, resetForm } from "../../store/employeeSlice";
 import { Modal, Button } from "antd";
 
 function CreateEmployee() {
@@ -15,21 +15,11 @@ function CreateEmployee() {
     document.title = "HRnet - Create Employee";
   }, []);
 
-  const [employee, setEmployee] = useState({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: "",
-    startDate: "",
-    department: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-  });
+  const employee = useSelector((state) => state.employees.form);
 
   const handleInputChange = (e, fieldName) => {
     const { value } = e.target;
-    setEmployee({ ...employee, [fieldName]: value });
+    dispatch(updateForm({ [fieldName]: value }));
   };
 
   const saveEmployee = () => {
@@ -53,10 +43,20 @@ function CreateEmployee() {
         <Modal
           title="Employee Created!"
           open={isVisible}
-          onOk={() => setIsVisible(false)}
+          onOk={() => {
+            dispatch(resetForm());
+            setIsVisible(false);
+          }}
           onCancel={() => setIsVisible(false)}
           footer={[
-            <Button key="ok" type="primary" onClick={() => setIsVisible(false)}>
+            <Button
+              key="ok"
+              type="primary"
+              onClick={() => {
+                dispatch(resetForm());
+                setIsVisible(false);
+              }}
+            >
               Ok
             </Button>,
           ]}
