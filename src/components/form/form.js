@@ -76,6 +76,7 @@ function Form(props) {
 
             <label htmlFor="state">State</label>
             <Selectoc
+              id="state"
               options={states.map((state) => ({
                 value: state.name,
                 label: state.name,
