@@ -77,13 +77,13 @@ function Form(props) {
             <label htmlFor="state">State</label>
             <Selectoc
               options={states.map((state) => ({
-                value: state.abbreviation,
+                value: state.name,
                 label: state.name,
               }))}
               onChange={(value) =>
                 props.handleInputChange({ target: { value } }, "state")
               }
-              defaultValue={props.employee.state || states[0].abbreviation}
+              defaultValue={props.employee.state || states[0].name}
             />
 
             <label htmlFor="zip-code">Zip Code</label>

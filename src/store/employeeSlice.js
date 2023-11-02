@@ -11,7 +11,7 @@ const initialState = {
     department: "",
     street: "",
     city: "",
-    state: states[0].abbreviation,
+    state: states[0].name,
     zipCode: department[0].value,
   },
 };
