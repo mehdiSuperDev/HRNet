@@ -4,7 +4,7 @@ function DebouncedInput(props) {
   const {
     value: initialValue,
     onChange,
-    debounce = 500,
+    debounce = 300,
     ...otherProps
   } = props;
   const [value, setValue] = React.useState(initialValue);
@@ -16,7 +16,6 @@ function DebouncedInput(props) {
   React.useEffect(() => {
     const timeout = setTimeout(() => {
       onChange(value);
-      console.log("Value", value);
     }, debounce);
 
     return () => clearTimeout(timeout);
